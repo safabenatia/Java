@@ -1,27 +1,31 @@
-import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        // Création de quelques animaux avec le constructeur
+        Animal lion = new Animal("Felidae", "Lion", 5, true);
+        Animal crocodile = new Animal("Crocodylidae", "Crocodile", 12, false);
+        Animal elephant = new Animal("Elephantidae", "Elephant", 15, true);
 
-        // Version avec valeurs par défaut
-        int nbrCages = 20;
-        String zooName = "my zoo";
-        System.out.println(zooName + " comporte " + nbrCages + " cages");
+        // Création du zoo
+        Zoo myZoo = new Zoo("Zoo Esprit", "Tunis", 10);
 
-        // Version avec saisie utilisateur
-        System.out.print("Entrez le nom du zoo : ");
-        zooName = input.nextLine();
+        // Exemple d'affichage des animaux
+        System.out.println("=== Affichage avec displayAnimal() ===");
+        lion.displayAnimal();
+        System.out.println("------");
+        crocodile.displayAnimal();
+        System.out.println("------");
+        elephant.displayAnimal();
 
-        System.out.print("Entrez le nombre de cages : ");
-        nbrCages = input.nextInt();
+        System.out.println("\n=== Affichage avec toString() ===");
+        System.out.println(lion);       // appelle automatiquement toString()
+        System.out.println(crocodile);
+        System.out.println(elephant);
 
-        if (nbrCages > 0) {
-            System.out.println(zooName + " comporte " + nbrCages + " cages");
-        } else {
-            System.out.println("Erreur : le nombre de cages doit être positif !");
-        }
+        // Affichage des infos du Zoo
+        System.out.println("\n=== Infos du Zoo avec displayZoo() ===");
+        myZoo.displayZoo();
 
-        input.close();
+        System.out.println("\n=== Infos du Zoo avec toString() ===");
+        System.out.println(myZoo);      // appelle automatiquement toString()
     }
 }
-
