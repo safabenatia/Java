@@ -1,31 +1,47 @@
 public class Main {
     public static void main(String[] args) {
-        // Création de quelques animaux avec le constructeur
+        // Création d’animaux
         Animal lion = new Animal("Felidae", "Lion", 5, true);
         Animal crocodile = new Animal("Crocodylidae", "Crocodile", 12, false);
         Animal elephant = new Animal("Elephantidae", "Elephant", 15, true);
+        Animal lion2 = new Animal("Felidae", "Lion", 5, true); // identique au premier
 
         // Création du zoo
-        Zoo myZoo = new Zoo("Zoo Esprit", "Tunis", 10);
+        Zoo zoo1 = new Zoo("Zoo Esprit", "Tunis", 3);
+        Zoo zoo2 = new Zoo("Zoo Ariana", "Ariana", 5);
 
-        // Exemple d'affichage des animaux
-        System.out.println("=== Affichage avec displayAnimal() ===");
-        lion.displayAnimal();
-        System.out.println("------");
-        crocodile.displayAnimal();
-        System.out.println("------");
-        elephant.displayAnimal();
+        // Test ajout
+        zoo1.addAnimal(lion);
+        zoo1.addAnimal(crocodile);
+        zoo1.addAnimal(elephant);
 
-        System.out.println("\n=== Affichage avec toString() ===");
-        System.out.println(lion);       // appelle automatiquement toString()
-        System.out.println(crocodile);
-        System.out.println(elephant);
+        // Tentative d’ajouter un animal identique
+        zoo1.addAnimal(lion2);
 
-        // Affichage des infos du Zoo
-        System.out.println("\n=== Infos du Zoo avec displayZoo() ===");
-        myZoo.displayZoo();
+        // Tentative d’ajouter au-delà du nombre de cages
+        Animal girafe = new Animal("Giraffidae", "Girafe", 7, true);
+        zoo1.addAnimal(girafe);
 
-        System.out.println("\n=== Infos du Zoo avec toString() ===");
-        System.out.println(myZoo);      // appelle automatiquement toString()
+        // Affichage
+        System.out.println();
+        zoo1.displayAnimals();
+
+        // Test de recherche
+        System.out.println("\nRecherche du lion : index = " + zoo1.searchAnimal(lion));
+        System.out.println("Recherche de la girafe : index = " + zoo1.searchAnimal(girafe));
+
+        // Test suppression
+        zoo1.removeAnimal(crocodile);
+        zoo1.displayAnimals();
+
+        // Comparaison entre deux zoos
+        zoo2.addAnimal(new Animal("Canidae", "Renard", 3, true));
+        Zoo biggerZoo = Zoo.comparerZoo(zoo1, zoo2);
+
+        System.out.println("\nComparaison des zoos :");
+        if (biggerZoo == null)
+            System.out.println("Les deux zoos ont le même nombre d’animaux.");
+        else
+            System.out.println("Le zoo avec le plus d’animaux est : " + biggerZoo);
     }
 }
